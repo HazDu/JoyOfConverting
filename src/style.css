@@ -15,6 +15,20 @@ body{
     flex-direction: column;
     margin: 0;
 }
+.home_icon{
+    display: flex;
+    justify-content: center;
+    font-family: 'Material Symbols Outlined', serif;
+    font-size: 80px;
+    width: 80px;
+    margin: 0 30px;
+    background-color: transparent;
+    color: var(--ColMagma);
+    border: none;
+}
+.home_icon:hover{
+    cursor: pointer;
+}
 .upload_icon{
     font-family: 'Material Symbols Outlined', serif;
     font-size: 140px;
@@ -23,7 +37,8 @@ body{
 }
 .title{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     font-size: 30px;
     width: 100%;
     background-color: #202020;
