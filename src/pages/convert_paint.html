@@ -14,12 +14,15 @@
   </div>
   <div class="main_container">
     <div class="preview">
-      <span class="palette_icon">palette</span>
-      <p class="prev_img">There is no preview available for .paint files.</p>
+      <div class="preview_border" style="width: 600px">
+        <span class="palette_icon">palette</span>
+        <p class="prev_img" style="margin-top: 36%">There is no preview available for .paint files.</p>
+      </div>
+
     </div>
     <div class="inputs">
       <label>
-        <input id="Title" type="text" autocomplete="off" placeholder="File Name" class="inputbox">
+        <input id="Title" type="text" autocomplete="off" placeholder="File Name" class="inputbox" value="File-Name" onfocus="this.select()" spellcheck="false">
       </label>
       <button id="conv_btn" class="button">Convert&nbsp;&nbsp;<span class="small_icons">imagesmode</span></button>
     </div>
