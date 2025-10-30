@@ -1,6 +1,4 @@
 const upload_rect = document.getElementById('upload_rect');
-const prev = document.getElementById('prev');
-let stored_file = null;
 
 ['dragover', 'dragleave', 'drop'].forEach(evtName => {
     upload_rect.addEventListener(evtName, e => e.preventDefault());
@@ -34,7 +32,7 @@ upload_rect.addEventListener('drop', e => {
         URL.revokeObjectURL(image_url);
     };
 
-    img.onload = () => {
+    img.onload = async () => {
         const { width, height } = img;
         const valid_sizes = [
             [16, 16],
@@ -51,9 +49,22 @@ upload_rect.addEventListener('drop', e => {
             return;
         }
 
+        const base64_img = await toBase64(file);
+        sessionStorage.setItem('uploaded_image', base64_img)
+
         console.log(`File stored: ${file.name}, size ${width}x${height}`);
-        prev.src = image_url;
+        //prev.src = image_url;
+        window.location.href = "pages/convert_png.html";
     }
 
     img.src = image_url;
 });
+
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
