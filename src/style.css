@@ -15,11 +15,11 @@ body{
     flex-direction: column;
     margin: 0;
 }
-.material-symbols-outlined {
+.upload_icon{
     font-family: 'Material Symbols Outlined', serif;
     font-size: 140px;
     font-variation-settings:
-        'FILL' 0;
+            'FILL' 0;
 }
 .title{
     display: flex;
@@ -72,6 +72,8 @@ body{
     margin: 20px;
 
     image-rendering: pixelated;
+
+    font-size: 30px;
 }
 .inputs{
     display: flex;
@@ -116,4 +118,14 @@ body{
     border-color: #FF6B36;
     box-shadow: 0 0 25px var(--ColMagma);
     cursor: pointer;
+}
+.palette_icon{
+    font-family: 'Material Symbols Outlined', serif;
+    font-size: 140px;
+}
+.small_icons{
+    font-family: 'Material Symbols Outlined', serif;
+    font-size: 30px;
+    font-variation-settings:
+            'FILL' 0;
 }
