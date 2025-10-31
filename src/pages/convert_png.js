@@ -51,12 +51,20 @@ class SimplePaintConverter {
 
     async convertSingleImage(file, title, author) {
         const { width, height } = await this.getImageDimensions(file);
-        const validSizes = [[16,16], [32,32], [16,32], [32,16]];
-        const isValid = validSizes.some(([w, h]) => w === width && h === height);
-        if (!isValid) throw new Error(`Invalid image size: ${width}x${height}`);
+
+        const sizeToType = {
+            "16x16": 0,
+            "32x32": 1,
+            "32x16": 2,
+            "16x32": 3
+        };
+        const typeKey = `${width}x${height}`;
+        const ct = sizeToType[typeKey];
+
+        if (ct === undefined) throw new Error(`Invalid image size: ${width}x${height}`);
 
         const pixelData = await this.extractPixelData(file, width, height);
-        const paintData = this.createPaintData(pixelData, title, author);
+        const paintData = this.createPaintData(pixelData, title, author, ct);
 
         const filename = title.replace(/\s+/g, '_') + '.paint';
         this.downloadPaintFile(paintData, filename);
@@ -106,7 +114,7 @@ class SimplePaintConverter {
         return value > 0x7FFFFFFF ? value - 0x100000000 : value;
     }
 
-    createPaintData(pixels, title, author) {
+    createPaintData(pixels, title, author, ct) {
         const timestamp = Math.floor(Date.now() / 1000);
         const name = `${this.ROOT_UUID}_${timestamp}`;
         const pixelInts = pixels.map(hex => this.hexToSignedInt(hex));
@@ -114,7 +122,7 @@ class SimplePaintConverter {
         return {
             "": {
                 generation: 1,
-                ct: 0, // auto-detected type (irrelevant here)
+                ct,
                 pixels: pixelInts,
                 v: this.CANVAS_VER,
                 author,
@@ -138,7 +146,8 @@ class SimplePaintConverter {
 
     writeNBTData(data) {
         const compound = data[""];
-        const buffer = new ArrayBuffer(4096);
+        const estimatedSize = 4 * compound.pixels.length + 512;
+        const buffer = new ArrayBuffer(estimatedSize);
         const view = new DataView(buffer);
         let offset = 0;
 
