@@ -63,10 +63,11 @@ upload_rect.addEventListener('drop', e => {
 
         }
     } else if (file_name.endsWith(".paint")) {
-        window.location.href = "pages/convert_paint.html";
+        toBase64(file).then(base64_paint => {
+            sessionStorage.setItem('uploaded_file', base64_paint);
+            window.location.href = "pages/convert_paint.html";
+        })
     }
-
-
 });
 
 function toBase64(file) {
