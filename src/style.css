@@ -15,19 +15,24 @@ body{
     flex-direction: column;
     margin: 0;
 }
-.home_icon{
+.header_icon{
     display: flex;
     justify-content: center;
     font-family: 'Material Symbols Outlined', serif;
     font-size: 80px;
     width: 80px;
-    margin: 0 30px;
+    margin: 0 10px;
     background-color: transparent;
     color: var(--ColMagma);
     border: none;
 }
-.home_icon:hover{
+.header_icon:hover{
     cursor: pointer;
+}
+.header_icon_group{
+    display: flex;
+    flex-direction: row;
+    margin: 0 30px;
 }
 .upload_icon{
     font-family: 'Material Symbols Outlined', serif;
