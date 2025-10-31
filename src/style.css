@@ -2,6 +2,7 @@
 :root {
     --ColMagma: #EC4103;
     --ColBedrock: #121212;
+    --ColBedrocklight: #202020;
 }
 
 body{
@@ -15,6 +16,21 @@ body{
     flex-direction: column;
     margin: 0;
 }
+hr{
+    height: 5px;
+    width: 100%;
+    border: none;
+    background-color: #303030;
+    border-radius: 2px;
+
+}
+a:link {
+    color: #00AAD0;
+}
+a:visited {
+    color: #C32CFF;
+}
+
 .header_icon{
     display: flex;
     justify-content: center;
@@ -46,7 +62,7 @@ body{
     align-items: center;
     font-size: 30px;
     width: 100%;
-    background-color: #202020;
+    background-color: var(--ColBedrocklight);
 }
 .description{
     font-size: 22px;
@@ -117,7 +133,7 @@ body{
     width: 500px;
     height: 60px;
     color: white;
-    background-color: #202020;
+    background-color: var(--ColBedrocklight);
     margin: 20px;
     outline: none;
     padding: 0 10px;
@@ -136,7 +152,7 @@ body{
     width: 530px;
     height: 70px;
     color: white;
-    background-color: #202020;
+    background-color: var(--ColBedrocklight);
     margin: 20px;
     outline: none;
 
@@ -160,4 +176,20 @@ body{
     font-size: 30px;
     font-variation-settings:
             'FILL' 0;
+}
+.help_main_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+.help_paragraph{
+    color: white;
+    font-size: 20px;
+    margin: 5px 20px;
+    text-align: justify;
+}
+.help_title{
+    margin: 5px;
+    margin-top: 50px;
 }
